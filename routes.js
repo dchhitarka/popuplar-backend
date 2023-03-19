@@ -7,6 +7,8 @@ const searchController = require('./controllers/search');
 const { body } = require('express-validator');
 const { catchErrors } = require('./handlers/errorHandlers');
 
+
+
 // AUTH ROUTES
 router.post(
     '/login',
@@ -15,18 +17,18 @@ router.post(
         remove_extension: false,
         gmail_remove_subaddress: false
     }),
-    body('password').isLength({min: 4}),
+    body('password').isLength({ min: 4 }),
     authController.login
 );
 
-router.post('/register', 
+router.post('/register',
     body('email').isEmail().normalizeEmail({
         remove_dots: false,
         remove_extension: false,
         gmail_remove_subaddress: false
     }),
-    body('password').isLength({min: 6}),
-    body('password').isLength({min: 2}),
+    body('password').isLength({ min: 6 }),
+    body('password').isLength({ min: 2 }),
     authController.register,
 );
 router.get('/logout', authController.isLoggedIn, authController.logout);

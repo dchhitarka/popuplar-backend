@@ -10,6 +10,8 @@ const multer = require('multer');
 const path = require('path');
 const errorHandlers = require('./handlers/errorHandlers');
 const cors = require('cors');
+const firebaseApp = require("firebase/app");
+
 require('./handlers/passport');
 require('dotenv').config();
 
@@ -65,6 +67,10 @@ app.use(function (req, res, next) {
 });
 
 // Routes
+// app.use('/', (req, res) => {
+//     return res.json({ status: "success", message: "Welcome to Popular!" })
+// });
+
 app.use('/api/', routes);
 app.use('/public/images', express.static(__dirname + '/uploads'))
 app.use(errorHandlers.notFound);
@@ -79,6 +85,22 @@ mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on('connected', () => console.log('Connected to DB!'));
 mongoose.connection.on('error', () => console.log('Connection to DB failed!'));
+
+
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDBLrPuFBtcROYsHsqOPfjZUAwQKxOHLJM",
+    authDomain: "popular-api.firebaseapp.com",
+    projectId: "popular-api",
+    storageBucket: "popular-api.appspot.com",
+    messagingSenderId: "130162354120",
+    appId: "1:130162354120:web:77a208e3d32f5a864c42fd",
+    measurementId: "G-2PFM7SB2DG"
+};
+
+// Initialize Firebase
+const fire = firebaseApp.initializeApp(firebaseConfig);
 
 // Start servers
 app.listen(process.env.PORT, () => {
