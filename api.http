@@ -1,0 +1,20 @@
+POST http://localhost:5000/register HTTP/1.1
+Content-Type: "application/json"
+Accept: "application/json"
+
+{
+    "email": "dchhitarka@gmail.com",
+    "password": "deepak",
+    "name": "Deepak Chhitarka"
+}
+
+
+###
+http://localhost:5000/
+
+
+<request>
+    <name>Deepak Chhitarka</name>
+    <email>dchhitarka@gmail.com</email>
+    <password>deepak</password>
+</request>
