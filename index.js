@@ -67,12 +67,12 @@ app.use(function (req, res, next) {
 });
 
 // Routes
-// app.use('/', (req, res) => {
-//     return res.json({ status: "success", message: "Welcome to Popular!" })
-// });
-
 app.use('/api/', routes);
 app.use('/public/images', express.static(__dirname + '/uploads'))
+app.use('/', (req, res) => {
+    return res.json({ status: "success", message: "Welcome to Popular!" })
+});
+
 app.use(errorHandlers.notFound);
 
 /* Error Handler - Prints stack trace */
